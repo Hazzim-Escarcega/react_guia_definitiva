@@ -2,7 +2,8 @@ import { Component } from "react";
 import "./App.css";
 import Productos from "./components/Productos";
 
-class App extends Component{
+
+class App extends Component {
   state = {
     productos: [
       { name: "Tomate", price: 1500, img: "/productos/tomate.jpg" },
@@ -15,8 +16,8 @@ class App extends Component{
       <div>
         <Productos
           addToCart={() => console.log("not implemented")}
-          productos={this.state.productos} 
-          key={""}        />
+          productos={this.state.productos}
+          key={""} />
         <p>Welcome</p>
       </div>
     );

@@ -1,6 +1,10 @@
 import { Component } from "react";
 
-class Producto extends Component {
+export interface IProducto {
+    addToCart: () => void;
+    producto: IProducto;
+}
+class Producto extends Component<IProducto> {
     render() {
         return (
             <p>Producto component</p>
