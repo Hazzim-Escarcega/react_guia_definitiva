@@ -2,12 +2,17 @@ import { Component } from "react";
 import "./style.css";
 import Logo from "../Logo/Logo";
 import Cart from "../Cart/Cart";
-class Navbar extends Component {
+import {CartModel} from "../Cart/CartInterface"
+class Navbar extends Component<CartModel> {
+    constructor(props: CartModel) {
+        super(props);
+    }
     render() {
+        const {cart} = this.props
         return(
             <nav className="navbar">
                 <Logo />
-                <Cart/>
+                <Cart cart={cart}/>
             </nav>
         )
     }
