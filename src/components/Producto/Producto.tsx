@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "./style.css"
+import "./style.css";
 import Button from "../Button/Button";
 import { Product } from "../Productos/productos_interface";
 
@@ -8,7 +8,7 @@ export interface IProducto {
   img: string | undefined;
   name: string;
   addToCart: (p: object) => void;
-  producto: IProducto;
+  producto: Product;
 }
 class Producto extends Component<IProducto> {
   addToCart: any;
@@ -19,14 +19,9 @@ class Producto extends Component<IProducto> {
         <img src={producto.img} alt={producto.name} />
         <h3>{producto.name}</h3>
         <p>{producto.price}</p>
-        <Button onClick={() => addToCart(producto)}>
-          Agregar al carrito
-        </Button>
+        <Button onClick={() => addToCart(producto)}>Agregar al carrito</Button>
       </div>
     );
   }
 }
 export default Producto;
-
-
-

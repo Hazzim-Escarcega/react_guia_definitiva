@@ -1,7 +1,8 @@
 import { Component } from "react";
 import "./App.css";
 import Productos from "./components/Productos/Productos";
-
+import Layout from "./components/Layout/Layout";
+import Title from "./components/Title/Title";
 class App extends Component {
   state = {
     productos: [
@@ -13,16 +14,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Productos
-          productos={this.state.productos}
-          key={""}
-          addToCart={() => console.log("no funciona")}
-        />
+        <Layout>
+          <Title />
+          <Productos
+            productos={this.state.productos}
+            key={""}
+            addToCart={() => console.log("no funciona")}
+          />
+        </Layout>
       </div>
     );
   }
 }
 
 export default App;
-
-
