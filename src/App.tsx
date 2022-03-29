@@ -1,7 +1,6 @@
 import { Component } from "react";
 import "./App.css";
-import Productos from "./components/Productos";
-
+import Productos from "./components/Productos/Productos";
 
 class App extends Component {
   state = {
@@ -15,13 +14,15 @@ class App extends Component {
     return (
       <div>
         <Productos
-          addToCart={() => console.log("not implemented")}
           productos={this.state.productos}
-          key={""} />
-        <p>Welcome</p>
+          key={""}
+          addToCart={() => console.log("no funciona")}
+        />
       </div>
     );
   }
 }
 
 export default App;
+
+
