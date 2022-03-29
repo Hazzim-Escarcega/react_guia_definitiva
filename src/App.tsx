@@ -3,6 +3,7 @@ import "./App.css";
 import Productos from "./components/Productos/Productos";
 import Layout from "./components/Layout/Layout";
 import Title from "./components/Title/Title";
+import Navbar from "./components/Navbar/Navbar";
 class App extends Component {
   state = {
     productos: [
@@ -14,6 +15,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <Layout>
           <Title />
           <Productos

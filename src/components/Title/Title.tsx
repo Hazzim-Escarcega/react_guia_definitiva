@@ -3,7 +3,7 @@ import { Component } from "react";
 class Title extends Component{
     render() {
         return (
-            <h1 className="titles">Titulo</h1>
+            <h1 className="titles">Tienda</h1>
         )
     }
 }
