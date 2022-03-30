@@ -1,45 +1,59 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import useFormulario from "./hooks/useFormulario";
+import Input from "./components/Input/Input";
+import Card from "./components/Card/Card";
+import Container from "./components/Container/Container";
+import Button from "./components/Button/Button";
 
+interface Usuarios{
+  name: string;
+  lastname:string;
+  email:string;
+  reset: () => void;
+}
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [usuarios, setUsuarios] = useState([]);
+  const [formulario, handleChange, reset] = useFormulario({
+    name: "",
+    lastname: "",
+    email: "",
+  });
+  const submit = (e: Usuarios) => {
+    e.preventDefault();
+    setUsuarios([...usuarios, formulario]);
+    reset();
+  };
+  console.log(formulario);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <Container>
+      <Card>
+        <div style={{ padding: 20 }}>
+          <form onSubmit={submit}>
+            <Input
+              label="Nombre"
+              name="name"
+              value={formulario.name}
+              onChange={handleChange}
+            />
+            <Input
+              label="Apellido"
+              name="lastname"
+              value={formulario.lastname}
+              onChange={handleChange}
+            />
+            <Input
+              label="Email"
+              name="email"
+              value={formulario.email}
+              onChange={handleChange}
+            />
+            <Button>Ok</Button>
+          </form>
+        </div>
+      </Card>
+    </Container>
+  );
 }
 
-export default App
+export default App;
