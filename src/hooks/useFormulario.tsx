@@ -20,7 +20,7 @@ const useFormulario = (inicial: Formulario) => {
     const reset = () => {
       setFormulario(inicial);
     }
-    return [formulario, handleChange];
+    return [formulario, handleChange, reset];
 }
 
 

@@ -24,8 +24,9 @@ function App() {
     setUsuarios([...usuarios, formulario]);
     reset();
   };
-  console.log(formulario);
+  console.log(formulario, usuarios);
   return (
+    <div style={{marginTop: "15%"}}>
     <Container>
       <Card>
         <div style={{ padding: 20 }}>
@@ -35,24 +36,35 @@ function App() {
               name="name"
               value={formulario.name}
               onChange={handleChange}
+              placeholder="Nombre"
             />
             <Input
               label="Apellido"
               name="lastname"
               value={formulario.lastname}
               onChange={handleChange}
+              placeholder="Apellido"
             />
             <Input
               label="Email"
               name="email"
               value={formulario.email}
               onChange={handleChange}
+              placeholder="Email"
             />
-            <Button>Ok</Button>
+            <Button>Enviar</Button>
           </form>
         </div>
       </Card>
+      <Card>
+        <ul>
+        {usuarios.map(x =>
+        <li  key={x.email} >{`${x.name} ${x.lastname} ${x.email}`}</li>
+        )}
+        </ul>
+      </Card>
     </Container>
+    </div>
   );
 }
 
