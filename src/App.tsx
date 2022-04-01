@@ -1,45 +1,44 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { Formik, Form } from "formik";
+import Input from "./components/Input/Input";
+import Button from "./components/Button/Button";
+import Container from "./components/Container/Container";
+import Section from "./components/Section/Section";
+interface FormValues {
+  deposit: number;
+  contribution: number;
+  years: number;
+  rate: number;
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
 }
 
-export default App
+const compoundInterest = ({deposit, contribution, years, rate}: FormValues) => {
+
+}
+function App () {
+  const handleSubmit = () => {};
+  return (
+    <Container>
+      <Section>
+        <Formik
+          initialValues={{
+            deposit: "",
+            contribution: "",
+            years: "",
+            rate: "",
+          }}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <Input name="deposit" label="Deposito inicial"></Input>
+            <Input name="contribution" label="Contribucioon anual"></Input>
+            <Input name="years" label="Periodo"></Input>
+            <Input name="rate" label="Interes"></Input>
+            <Button>Calcular</Button>
+          </Form>
+        </Formik>
+      </Section>
+    </Container>
+  );
+}
+
+export default App;
