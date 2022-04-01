@@ -1,45 +1,59 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from "react";
+import { Formik, Form, Field } from "formik";
+import "./header.css";
+import "./content.css";
+import "./article.css";
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+interface Photos {
+  url: string;
+  id: string;
+  links: string[];
+  description: string;
+  alt_description: string;
+  urls: string[];
 }
+const App = () => {
+  const [photos, setPhotos] = useState([]);
+  const open = (url: string) => window.open(url);
+  console.log(photos);
+  return (
+    <div>
+      <header>
+        <Formik
+          initialValues={{ search: "" }}
+          onSubmit={async (values) => {
+            //api call
+            const response = await fetch(
+              `https://api.unsplash.com/search/photos?per_page=20&query=${values.search}`,
+              {
+                headers: {
+                  Authorization:
+                    "Client-ID pMqqoF0cfZMFE6-alNvxi2psTR95aIXrv9PDYKTyR6g",
+                },
+              }
+            );
+            const data = await response.json();
+            setPhotos(data.results);
+          }}
+        >
+          <Form>
+            <Field name="search" />
+          </Form>
+        </Formik>
+      </header>
+      <div className="container">
+        <div className="center">
+          {photos.map((photo: Photos) => (
+            <article key={photo.id} onClick={() => open(photo.links.html)}>
+              <img src={photo.urls.regular} alt={photo.alt_description} />
+              <p>{[photo.description, photo.alt_description].join(" - ")}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default App
+export default App;
